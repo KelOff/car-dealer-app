@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
 const VehicleFilter = () => {
   const [makes, setMakes] = useState([]);
@@ -22,6 +21,7 @@ const VehicleFilter = () => {
         const data = await response.json();
         const flattenedMakes = data.Results.flat();
         const uniqueMakes = Array.from(
+          // eslint-disable-next-line no-undef
           new Set(flattenedMakes.map((make) => make.MakeId))
         ).map((id) => flattenedMakes.find((make) => make.MakeId === id));
         setMakes(uniqueMakes);

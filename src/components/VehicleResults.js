@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const VehicleResults = ({ vehicles, make, year }) => {
   return (
@@ -32,6 +33,18 @@ const VehicleResults = ({ vehicles, make, year }) => {
       )}
     </div>
   );
+};
+
+VehicleResults.propTypes = {
+  vehicles: PropTypes.arrayOf(
+    PropTypes.shape({
+      MakeId: PropTypes.string.isRequired,
+      Make_Name: PropTypes.string.isRequired,
+      Model_Name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  make: PropTypes.string.isRequired,
+  year: PropTypes.string.isRequired,
 };
 
 export default VehicleResults;

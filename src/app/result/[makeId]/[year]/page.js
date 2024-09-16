@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-
+import PropTypes from 'prop-types';
 import VehicleResults from '../../../../components/VehicleResults';
 
 async function fetchVehicles(makeId, year) {
@@ -12,7 +12,7 @@ async function fetchVehicles(makeId, year) {
   return res.json();
 }
 
-async function fetchMakeName(makeId, year) {
+async function fetchMakeName(makeId) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/vehicles/GetModelsForMakeId/${makeId}?format=json`
   );
@@ -68,6 +68,13 @@ export default async function ResultPage({ params }) {
     </main>
   );
 }
+
+ResultPage.propTypes = {
+  params: PropTypes.shape({
+    makeId: PropTypes.string.isRequired,
+    year: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 function Loading() {
   return (
